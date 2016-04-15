@@ -1,4 +1,5 @@
-﻿using Chloe.Server.Services.Contracts;
+﻿using Chloe.Server.Data.Contracts;
+using Chloe.Server.Services.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ namespace Chloe.Server.Services
 {
     public class DistributionListService : IDistributionListService
     {
-        public DistributionListService()
+        public DistributionListService(IChloeUow uow)
         {
-
+            this.uow = uow;
         }
 
         public MailMessage ResolveRecipients(System.Net.Mail.MailMessage mailMessage)
@@ -20,5 +21,7 @@ namespace Chloe.Server.Services
             mailMessage.From = new MailAddress("quinntynebrown@gmail.com");
             return mailMessage;
         }
+
+        protected readonly IChloeUow uow;
     }
 }

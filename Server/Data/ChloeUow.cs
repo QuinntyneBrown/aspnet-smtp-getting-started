@@ -30,7 +30,7 @@ namespace Chloe.Server.Data
         public IRepository<Message> Messages { get { return GetStandardRepo<Message>(); } }
         public IRepository<Recipient> Recipients { get { return GetStandardRepo<Recipient>(); } }
         public IRepository<Notification> Notifications { get { return GetStandardRepo<Notification>(); } }
-
+        public IRepository<DistributionList> DistributionLists { get { return GetStandardRepo<DistributionList>(); } }
         protected void ConfigureDbContext(IDbContext dbContext)
         {
             dbContext.Configuration.ProxyCreationEnabled = false;

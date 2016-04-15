@@ -18,7 +18,7 @@ namespace Chloe.Server.Data
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<Recipient> Recipients { get; set; }
         public DbSet<LinkedResource> LinkedResources { get; set; }
-
+        public DbSet<DistributionList> DistributionLists { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
 
