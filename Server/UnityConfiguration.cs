@@ -30,6 +30,8 @@ namespace Chloe.Server
             container.RegisterType<IMessageSender, Chloe.Server.Services.SmtpClient>();
             container.RegisterType<INotificationService, NotificationService>();
             container.RegisterType<IConfigurationProvider, ConfigurationProvider>();
+            container.RegisterType<IDistributionListService, DistributionListService>();
+
             return container;
         }
 

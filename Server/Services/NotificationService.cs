@@ -10,21 +10,23 @@ namespace Chloe.Server.Services
 {
     public class NotificationService: INotificationService
     {
-        public NotificationService(IMessageSender messageSender, IMessageBuilder messageBuilder)
+        public NotificationService(IDistributionListService distributionListService, IMessageSender messageSender, IMessageBuilder messageBuilder)
         {
             this.messageSender = messageSender;
             this.messageBuilder = messageBuilder;
+            this.distributionListService = distributionListService;
         }
 
-        public void SendTest() {
-            var testMessage = this.messageBuilder.BuildTest();
-            testMessage.To.Add("quinntynebrown@gmail.com");
-            testMessage.From = new MailAddress("quinntynebrown@gmail.com");
+        public void SendTestNotification() {
+            var testMessage = this.messageBuilder.BuildTestMessage();
+            testMessage = this.distributionListService.ResolveRecipients(testMessage);
             this.messageSender.Send(testMessage);
         }
         public ISmtpConfiguration smtpConfiguration { get; set; }
 
         public IMessageSender messageSender { get; set; }
         public IMessageBuilder messageBuilder { get; set; }
+
+        protected readonly IDistributionListService distributionListService;
     }
 }

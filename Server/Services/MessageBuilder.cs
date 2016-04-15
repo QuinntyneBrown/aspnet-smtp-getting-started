@@ -10,7 +10,7 @@ namespace Chloe.Server.Services
 {
     public class MessageBuilder: IMessageBuilder
     {
-        public MailMessage BuildTest()
+        public MailMessage BuildTestMessage()
         {
             var mailMessage = new MailMessage();
             var html = @"<html><body><h1>Test</h1></body></html>";

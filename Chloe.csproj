@@ -148,11 +148,13 @@
     <Compile Include="Server\Models\Message.cs" />
     <Compile Include="Server\Models\Notification.cs" />
     <Compile Include="Server\Models\Recipient.cs" />
+    <Compile Include="Server\Services\Contracts\IDistributionListService.cs" />
     <Compile Include="Server\Services\Contracts\ILinkedResourceService.cs" />
     <Compile Include="Server\Services\Contracts\IMessageBuilder.cs" />
     <Compile Include="Server\Services\Contracts\IMessageService.cs" />
     <Compile Include="Server\Services\Contracts\INotificationService.cs" />
     <Compile Include="Server\Services\Contracts\IMessageSender.cs" />
+    <Compile Include="Server\Services\DistributionListService.cs" />
     <Compile Include="Server\Services\LinkedResourceService.cs" />
     <Compile Include="Server\Services\MessageBuilder.cs" />
     <Compile Include="Server\Services\MessageService.cs" />

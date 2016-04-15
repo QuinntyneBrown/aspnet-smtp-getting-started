@@ -8,6 +8,6 @@ namespace Chloe.Server.Services.Contracts
 {
     public interface IMessageBuilder
     {
-        MailMessage BuildTest();
+        MailMessage BuildTestMessage();
     }
 }

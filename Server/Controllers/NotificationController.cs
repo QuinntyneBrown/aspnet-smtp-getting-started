@@ -18,7 +18,7 @@ namespace Chloe.Server.Controllers
         [Route("send")]
         [HttpGet]
         public IHttpActionResult Send() {
-            this.notificationService.SendTest();
+            this.notificationService.SendTestNotification();
             return Ok(); 
         }
 
