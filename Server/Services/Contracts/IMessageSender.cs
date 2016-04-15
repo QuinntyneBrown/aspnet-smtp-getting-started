@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace Chloe.Server.Services.Contracts
 {
-    public interface IMessageService
+    public interface IMessageSender
     {
+        void Send(MailMessage mailMessage);
     }
 }

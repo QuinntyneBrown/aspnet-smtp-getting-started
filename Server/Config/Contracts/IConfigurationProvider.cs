@@ -7,5 +7,6 @@ namespace Chloe.Server.Config.Contracts
 {
     public interface IConfigurationProvider
     {
+        T Get<T>() where T : class;
     }
 }

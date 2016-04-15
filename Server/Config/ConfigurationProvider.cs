@@ -7,8 +7,8 @@ namespace Chloe.Server.Config
     {
         public T Get<T>() where T : class
         {
-            //if (typeof(T) == typeof(ISmtpConfiguration))
-            //    return SmtpConfiguration.Config as T;
+            if (typeof(T) == typeof(ISmtpConfiguration))
+                return SmtpConfiguration.Config as T;
 
             throw new InvalidOperationException();
         }

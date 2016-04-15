@@ -1,7 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using Chloe.Server;
 using Microsoft.Owin;
 using Owin;
+using System.Web.Http;
+using Unity.WebApi;
 
 [assembly: OwinStartup(typeof(Chloe.Startup))]
 
@@ -11,7 +12,9 @@ namespace Chloe
     {
         public void Configuration(IAppBuilder app)
         {
-            // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=316888
+            GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(UnityConfiguration.GetContainer());
+
+            GlobalConfiguration.Configure(config => ApiConfiguration.Install(config, app));
         }
     }
 }

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Chloe
+namespace Chloe.Server.Models
 {
-    public class ApiConfiguration
+    public class LinkedResource: BaseEntity
     {
     }
 }
