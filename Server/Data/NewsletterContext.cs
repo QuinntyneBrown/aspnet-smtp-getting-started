@@ -4,10 +4,10 @@ using System.Data.Entity;
 
 namespace Chloe.Server.Data
 {
-    public class ChloeContext : DbContext, IDbContext
+    public class NewsletterContext : DbContext, INewsletterContext
     {
-        public ChloeContext()
-            : base(nameOrConnectionString: "ChloeContext")
+        public NewsletterContext()
+            : base(nameOrConnectionString: "NewsletterContext")
         {
             Configuration.ProxyCreationEnabled = false;
             Configuration.LazyLoadingEnabled = false;
@@ -19,6 +19,8 @@ namespace Chloe.Server.Data
         public DbSet<Recipient> Recipients { get; set; }
         public DbSet<LinkedResource> LinkedResources { get; set; }
         public DbSet<DistributionList> DistributionLists { get; set; }
+
+        public DbSet<NewsletterTemplate> NewsletterTemplates { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
 

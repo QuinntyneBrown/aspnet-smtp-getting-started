@@ -1,15 +1,14 @@
-﻿using Chloe.Server.Config;
+﻿using Chloe.Server.Behaviors;
+using Chloe.Server.Config;
 using Chloe.Server.Config.Contracts;
 using Chloe.Server.Data;
 using Chloe.Server.Data.Contracts;
 using Chloe.Server.Services;
 using Chloe.Server.Services.Contracts;
+using Chloe.Server.Utils;
+using Chloe.Server.Utils.Contracts;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.InterceptionExtension;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Chloe.Server
 {
@@ -21,16 +20,59 @@ namespace Chloe.Server
             var container = new UnityContainer()
                 .AddNewExtension<Interception>();
 
-            container.RegisterType<IChloeUow, ChloeUow>();
-            container.RegisterType<IDbContext, ChloeContext>();
-            container.RegisterType<IRepositoryProvider, RepositoryProvider>();
-            container.RegisterType<IMessageService, MessageService>();
-            container.RegisterType<IMessageBuilder, MessageBuilder>();
-            container.RegisterType<ILinkedResourceService, LinkedResourceService>();
-            container.RegisterType<IMessageSender, Chloe.Server.Services.SmtpClient>();
-            container.RegisterType<INotificationService, NotificationService>();
-            container.RegisterType<IConfigurationProvider, ConfigurationProvider>();
-            container.RegisterType<IDistributionListService, DistributionListService>();
+            container.RegisterType<INewsletterUow, NewsletterUow>(new HierarchicalLifetimeManager(),
+                new Interceptor<InterfaceInterceptor>(),
+                new InterceptionBehavior<LoggingInterceptionBehavior>());
+
+            container.RegisterType<INewsletterContext, NewsletterContext>(new HierarchicalLifetimeManager(),
+                new Interceptor<InterfaceInterceptor>(),
+                new InterceptionBehavior<LoggingInterceptionBehavior>());
+
+            container.RegisterType<ILogUow, LogUow>(new HierarchicalLifetimeManager(),
+                new Interceptor<InterfaceInterceptor>(),
+                new InterceptionBehavior<LoggingInterceptionBehavior>());
+
+            container.RegisterType<ILogContext, LogContext>(new HierarchicalLifetimeManager(),
+                new Interceptor<InterfaceInterceptor>(),
+                new InterceptionBehavior<LoggingInterceptionBehavior>());
+
+            container.RegisterType<IRepositoryProvider, RepositoryProvider>(new HierarchicalLifetimeManager(),
+                new Interceptor<InterfaceInterceptor>(),
+                new InterceptionBehavior<LoggingInterceptionBehavior>());
+
+            container.RegisterType<IMessageService, MessageService>(new HierarchicalLifetimeManager(),
+                new Interceptor<InterfaceInterceptor>(),
+                new InterceptionBehavior<LoggingInterceptionBehavior>());
+
+            container.RegisterType<IMessageBuilder, MessageBuilder>(new HierarchicalLifetimeManager(),
+                new Interceptor<InterfaceInterceptor>(),
+                new InterceptionBehavior<LoggingInterceptionBehavior>());
+
+            container.RegisterType<ILinkedResourceService, LinkedResourceService>(new HierarchicalLifetimeManager(),
+                new Interceptor<InterfaceInterceptor>(),
+                new InterceptionBehavior<LoggingInterceptionBehavior>());
+
+            container.RegisterType<IMessageSender, Chloe.Server.Services.SmtpClient>(new HierarchicalLifetimeManager(),
+                new Interceptor<InterfaceInterceptor>(),
+                new InterceptionBehavior<LoggingInterceptionBehavior>());
+
+            container.RegisterType<INotificationService, NotificationService>(new HierarchicalLifetimeManager(),
+                new Interceptor<InterfaceInterceptor>(),
+                new InterceptionBehavior<LoggingInterceptionBehavior>());
+
+            container.RegisterType<IConfigurationProvider, ConfigurationProvider>(new HierarchicalLifetimeManager(),
+                new Interceptor<InterfaceInterceptor>(),
+                new InterceptionBehavior<LoggingInterceptionBehavior>());
+
+            container.RegisterType<IDistributionListService, DistributionListService>(new HierarchicalLifetimeManager(),
+                new Interceptor<InterfaceInterceptor>(),
+                new InterceptionBehavior<LoggingInterceptionBehavior>());
+
+            container.RegisterType<INewsletterTemplateService, NewsletterTemplateService>(new HierarchicalLifetimeManager(),
+                new Interceptor<InterfaceInterceptor>(),
+                new InterceptionBehavior<LoggingInterceptionBehavior>());
+
+            container.RegisterType<ILogger, Logger>();
 
             return container;
         }

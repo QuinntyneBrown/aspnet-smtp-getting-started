@@ -82,6 +82,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -127,43 +128,76 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Server\ApiConfiguration.cs" />
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\NewsletterConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Server\Behaviours\LoggingInterceptionBehavior.cs" />
     <Compile Include="Server\Config\ConfigurationProvider.cs" />
     <Compile Include="Server\Config\Contracts\IConfigurationProvider.cs" />
     <Compile Include="Server\Config\Contracts\ISmtpConfiguration.cs" />
     <Compile Include="Server\Config\SmtpConfiguration.cs" />
+    <Compile Include="Server\Controllers\LogEntryController.cs" />
+    <Compile Include="Server\Controllers\NewsletterTemplateController.cs" />
     <Compile Include="Server\Controllers\NotificationController.cs" />
-    <Compile Include="Server\Data\ChloeContext.cs" />
-    <Compile Include="Server\Data\ChloeUow.cs" />
-    <Compile Include="Server\Data\Contracts\IChloeUow.cs" />
+    <Compile Include="Server\Data\Contracts\ILogContext.cs" />
+    <Compile Include="Server\Data\Contracts\ILogUow.cs" />
+    <Compile Include="Server\Data\Contracts\INewsletterContext.cs" />
+    <Compile Include="Server\Data\LogContext.cs" />
+    <Compile Include="Server\Data\LogUow.cs" />
+    <Compile Include="Server\Data\NewsletterContext.cs" />
+    <Compile Include="Server\Data\NewsletterUow.cs" />
+    <Compile Include="Server\Data\Contracts\INewsletterUow.cs" />
     <Compile Include="Server\Data\Contracts\IDbContext.cs" />
     <Compile Include="Server\Data\Contracts\IRepository.cs" />
     <Compile Include="Server\Data\Contracts\IRepositoryProvider.cs" />
     <Compile Include="Server\Data\EFRepository.cs" />
     <Compile Include="Server\Data\RepositoryProvider.cs" />
     <Compile Include="Server\Data\RespositoryFactories.cs" />
+    <Compile Include="Server\Dtos\LogEntryAddOrUpdateRequestDto.cs" />
+    <Compile Include="Server\Dtos\LogEntryAddOrUpdateResponseDto.cs" />
+    <Compile Include="Server\Dtos\LogEntryDto.cs" />
+    <Compile Include="Server\Dtos\NewsletterTemplateAddOrUpdateRequestDto.cs" />
+    <Compile Include="Server\Dtos\NewsletterTemplateAddOrUpdateResponseDto.cs" />
+    <Compile Include="Server\Dtos\NewsletterTemplateDto.cs" />
+    <Compile Include="Server\Exceptions\LogEntryNotFound.cs" />
+    <Compile Include="Server\Exceptions\NewsletterTemplateNotFound.cs" />
+    <Compile Include="Server\Exceptions\NotFoundException.cs" />
     <Compile Include="Server\Models\BaseEntity.cs" />
+    <Compile Include="Server\Models\DistributionList.cs" />
     <Compile Include="Server\Models\LinkedResource.cs" />
+    <Compile Include="Server\Models\LogEntry.cs" />
     <Compile Include="Server\Models\Message.cs" />
+    <Compile Include="Server\Models\NewsletterTemplate.cs" />
     <Compile Include="Server\Models\Notification.cs" />
     <Compile Include="Server\Models\Recipient.cs" />
+    <Compile Include="Server\Services\Cache.cs" />
+    <Compile Include="Server\Services\CacheProvider.cs" />
+    <Compile Include="Server\Services\Contracts\ICache.cs" />
+    <Compile Include="Server\Services\Contracts\ICacheProvider.cs" />
     <Compile Include="Server\Services\Contracts\IDistributionListService.cs" />
     <Compile Include="Server\Services\Contracts\ILinkedResourceService.cs" />
+    <Compile Include="Server\Services\Contracts\ILogEntryService.cs" />
     <Compile Include="Server\Services\Contracts\IMessageBuilder.cs" />
     <Compile Include="Server\Services\Contracts\IMessageService.cs" />
+    <Compile Include="Server\Services\Contracts\INewsletterTemplateService.cs" />
     <Compile Include="Server\Services\Contracts\INotificationService.cs" />
     <Compile Include="Server\Services\Contracts\IMessageSender.cs" />
     <Compile Include="Server\Services\DistributionListService.cs" />
     <Compile Include="Server\Services\LinkedResourceService.cs" />
+    <Compile Include="Server\Services\LogEntryService.cs" />
+    <Compile Include="Server\Services\MemoryCache.cs" />
     <Compile Include="Server\Services\MessageBuilder.cs" />
     <Compile Include="Server\Services\MessageService.cs" />
+    <Compile Include="Server\Services\NewsletterTemplateService.cs" />
     <Compile Include="Server\Services\NotificationService.cs" />
     <Compile Include="Server\Services\SmtpClient.cs" />
+    <Compile Include="Server\Utils\Contracts\ILogger.cs" />
+    <Compile Include="Server\Utils\Logger.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Server\UnityConfiguration.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="wwwroot\app\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

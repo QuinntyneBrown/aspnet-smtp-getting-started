@@ -4,13 +4,13 @@ using System;
 
 namespace Chloe.Server.Data
 {
-    public class ChloeUow : IChloeUow
+    public class NewsletterUow : INewsletterUow
     {
         protected IDbContext dbContext;
 
         protected IRepositoryProvider RepositoryProvider { get; set; }
 
-        public ChloeUow(IDbContext dbContext = null)
+        public NewsletterUow(IDbContext dbContext = null)
         {
             this.dbContext = dbContext;
             ConfigureDbContext(this.dbContext);
@@ -19,7 +19,7 @@ namespace Chloe.Server.Data
             RepositoryProvider = repositoryProvider;
         }
 
-        public ChloeUow(IRepositoryProvider repositoryProvider, IDbContext dbContext = null)
+        public NewsletterUow(IRepositoryProvider repositoryProvider, INewsletterContext dbContext = null)
         {
             this.dbContext = dbContext;
             ConfigureDbContext(this.dbContext);
@@ -31,6 +31,7 @@ namespace Chloe.Server.Data
         public IRepository<Recipient> Recipients { get { return GetStandardRepo<Recipient>(); } }
         public IRepository<Notification> Notifications { get { return GetStandardRepo<Notification>(); } }
         public IRepository<DistributionList> DistributionLists { get { return GetStandardRepo<DistributionList>(); } }
+        public IRepository<NewsletterTemplate> NewsletterTemplates { get { return GetStandardRepo<NewsletterTemplate>(); } }
         protected void ConfigureDbContext(IDbContext dbContext)
         {
             dbContext.Configuration.ProxyCreationEnabled = false;

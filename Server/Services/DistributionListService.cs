@@ -10,7 +10,7 @@ namespace Chloe.Server.Services
 {
     public class DistributionListService : IDistributionListService
     {
-        public DistributionListService(IChloeUow uow)
+        public DistributionListService(INewsletterUow uow)
         {
             this.uow = uow;
         }
@@ -22,6 +22,6 @@ namespace Chloe.Server.Services
             return mailMessage;
         }
 
-        protected readonly IChloeUow uow;
+        protected readonly INewsletterUow uow;
     }
 }

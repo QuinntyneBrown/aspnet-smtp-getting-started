@@ -9,10 +9,10 @@ namespace Chloe.Server.Services
 {
     public class MessageService: IMessageService
     {
-        public MessageService(IChloeUow uow)
+        public MessageService(INewsletterUow uow)
         {
             this.uow = uow;
         }
-        public IChloeUow uow { get; set; }
+        public INewsletterUow uow { get; set; }
     }
 }
