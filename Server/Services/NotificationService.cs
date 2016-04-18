@@ -1,10 +1,4 @@
-﻿using Chloe.Server.Config.Contracts;
-using Chloe.Server.Services.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Mail;
-using System.Web;
+﻿using Chloe.Server.Services.Contracts;
 
 namespace Chloe.Server.Services
 {
@@ -22,11 +16,9 @@ namespace Chloe.Server.Services
             testMessage = this.distributionListService.ResolveRecipients(testMessage);
             this.messageSender.Send(testMessage);
         }
-        public ISmtpConfiguration smtpConfiguration { get; set; }
 
-        public IMessageSender messageSender { get; set; }
-        public IMessageBuilder messageBuilder { get; set; }
-
+        protected readonly IMessageSender messageSender;
+        protected readonly IMessageBuilder messageBuilder;
         protected readonly IDistributionListService distributionListService;
     }
 }
